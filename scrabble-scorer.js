@@ -11,21 +11,26 @@ const oldPointStructure = {
   8: ['J', 'X'],
   10: ['Q', 'Z']
 };
+let userWords="";
+let vowels=['A', 'E', 'I', 'O', 'U'];
+
 
 function oldScrabbleScorer(word) {
 	word = word.toUpperCase();
-	let letterPoints = "";
+	let letterPoints = 0;
  
 	for (let i = 0; i < word.length; i++) {
  
 	  for (const pointValue in oldPointStructure) {
  
 		 if (oldPointStructure[pointValue].includes(word[i])) {
-			letterPoints += `Points for '${word[i]}': ${pointValue}\n`
+       console.log(`Points for '${word[i]}': ${pointValue}`)
+			letterPoints += Number(pointValue); 
 		 }
  
 	  }
 	}
+  console.log(letterPoints);
 	return letterPoints;
  }
 
@@ -33,12 +38,35 @@ function oldScrabbleScorer(word) {
 // don't change the names or your program won't work as expected. //
 
 function initialPrompt() {
-   console.log("Let's play some scrabble! Enter a word:");
+   //console.log("Let's play some scrabble! Enter a word:");
+   let response=input.question("Let's play some scrabble! Enter a word: ")
+    // userWords.push(response);
+    // console.log(oldScrabbleScorer(response))
+    oldScrabbleScorer(response);
 };
 
-let simpleScore;
+function simpleScore(word) {
+  let numScore=0;
+  for (let i=0; i<word.length; i++) {
+    numScore = numScore+1;
+  }
+  return numScore;
+}
+console.log(numScore);
 
-let vowelBonusScore;
+
+function vowelBonusScore (word) {
+  let bonusScore=0;
+  for (let i=0; i<word.length; i++) {
+    if vowels.includes (word[i])  {
+      bonusScore=bonusScore+3;
+    } else {
+      bonusScore=bonusScore+1;
+    }
+  }
+}
+
+
 
 let scrabbleScore;
 
