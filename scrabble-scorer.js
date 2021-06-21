@@ -76,14 +76,14 @@ function vowelBonusScore (word) {
 let newPointStructure=transform(oldPointStructure);
 
 let scrabbleScore = function(newPointStructure) {
-  let newScore=0;
+  let newScore={};
   //word=word.toLowerCase
   
   for (const letter in newPointStructure) {
     for (i=0; i<word.length; i++) {
       if (letter===word[i]) {
         // newScore+=newPointStructure[letter];
-        newScore+=newPointStructure[letter][i];
+        newScore=newPointStructure[letter][i];
       }
     }
   }  
@@ -94,7 +94,7 @@ let scrabbleScore = function(newPointStructure) {
 const oldScrab = {
   name:  'Scrabble',
   description: 'The traditional scoring algorithm.',
-  scoringFunction: oldScrabbleScorer
+  scoringFunction: scrabbleScore
 }
 const simpleSc = {
   name:  'Simple Score',
@@ -144,12 +144,12 @@ function transform (oldPointStructure) {
 
 function runProgram() {
   let response = initialPrompt();
-  let finalWord=newPoint;
+  //let finalWord=newPoint;
         //  let lowCase = 
    let method=scorerPrompt();
     if (method==='0') {
       let simple=simpleScore(response);
-      console.log(`Score for ${finalWord}: ${simple}`)
+      console.log(`Score for ${response}: ${simple}`)
     } else if (method==='1') {
       let vbs=vowelBonusScore(response);
       console.log(`Score for ${response}: ${vbs}`)
