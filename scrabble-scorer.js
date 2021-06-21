@@ -133,7 +133,7 @@ function transform (oldPointStructure) {
   // for (i=0; i<obj.length; i++) {
   //   console.log(obj[i]);
   // }
-    return newPoint    
+    return newPoint{}=0    
 }
 
 // let newPointStructure=transform(oldPointStructure);
