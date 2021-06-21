@@ -117,7 +117,7 @@ function scorerPrompt() {
   return select;
 }
 
-
+let newScore2 ={}
 function transform (oldPointStructure) {
   let newPoint={};
   for (let letter in oldPointStructure) {
@@ -125,15 +125,16 @@ function transform (oldPointStructure) {
     for (i=0; i<letterArray.length; i++) {
       // newPoint[letterArray]=letter
       //console.log(letterArray[i].toLowerCase() + ": " + letter);
-      newPoint[i]=letterArray[i].toLowerCase()
+      newPoint[i]=letterArray[i].toLowerCase()    
     }
-
+    
     // obj[letter]=letter
   }
   // for (i=0; i<obj.length; i++) {
   //   console.log(obj[i]);
   // }
-    return newPoint
+    //return newPoint
+    return newPoint['']=0
 }
 
 // let newPointStructure=transform(oldPointStructure);
