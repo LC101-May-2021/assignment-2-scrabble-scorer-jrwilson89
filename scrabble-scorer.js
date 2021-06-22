@@ -62,7 +62,7 @@ function simpleScore(word) {
 
 function vowelBonusScore (word) {
   let bonusScore=0;
-  // word = word.toUpperCase();
+  word = word.toUpperCase();
   for (let i=0; i<word.length; i++) {
     if (vowels.includes (word[i]))  {
       bonusScore=bonusScore+3;
