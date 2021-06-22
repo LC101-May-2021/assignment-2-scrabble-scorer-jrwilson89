@@ -52,7 +52,7 @@ function initialPrompt() {
 
 function simpleScore(word) {
   let numScore=0;
-  for (let i=0; i<scrabbleScore.length; i++) {
+  for (let i=0; i<word.length; i++) {
     numScore = numScore+1;
   }
   //console.log(`Points for ${word[i]}: ${numScore}`);
@@ -76,17 +76,26 @@ function vowelBonusScore (word) {
 let newPointStructure=transform(oldPointStructure);
 
 let scrabbleScore = function(word) {
-  let newScore={};
-  //word=word.toLowerCase
-  
-  for (const letter in word) {
+  let newScore=0;
+  word=word.toLowerCase();
+  console.log(`word = ${word}`);
+
+  // for (const letter in word) {
+  //  console.log(`letter = ${letter}`);
     for (i=0; i<word.length; i++) {
-      if (letter[i]===word[i]) {
-        // newScore+=newPointStructure[letter];
-        newScore=newPointStructure[letter][i];
-      }
+      // console.log(`letter[i] = ${letter[i]}`);
+      // console.log(`word[i] = ${word[i]}`);
+      // if (newPointStructure===word[i]) {
+        console.log("word[i] = ", word[i]);
+        console.log("newScore = ", newScore);
+        console.log("newPointStructure[word[i]] = ", newPointStructure[word[i]]);
+        newScore+=newPointStructure[word[i]];
+        // newScore=newPointStructure[letter][i];
+
+      // }
     }
-  }  
+  // }  
+  console.log("type of " + typeof newScore);
   return newScore
 }
 
@@ -121,20 +130,29 @@ function scorerPrompt() {
 function transform (oldPointStructure) {
   let newPoint={};
   for (let letter in oldPointStructure) {
-    let letterArray = oldPointStructure[letter];  
+    // console.log(`letter = ${letter}`);
+    let letterArray = oldPointStructure[letter];
+    //.console.log(`letterArray = ${letterArray}`);  
     for (i=0; i<letterArray.length; i++) {
       // newPoint[letterArray]=letter
-      // console.log(letterArray[i].toLowerCase() + ": " + letter);
-      // newPoint[i]=letterArray[i].toLowerCase()    
+    //  console.log(letterArray[i].toLowerCase() + ": " + letter);
+    //  console.log(letterArray[i].toLowerCase());
+      // newPoint=letterArray[i].toLowerCase();
+      letter=Number(letter);
+      newPoint[letterArray[i].toLowerCase()] = letter;
     }
-  
+    
+    console.log(`letter = ${typeof letter}`);
     // obj[letter]=letter
   }
   // for (i=0; i<obj.length; i++) {
   //   console.log(obj[i]);
   // }
-    return newPoint 
+  console.log("newPointStructure: ")
+  console.log(newPoint)
+      return newPoint; 
 }
+
 
 // let newPointStructure=transform(oldPointStructure);
   
@@ -154,7 +172,7 @@ function runProgram() {
       let vbs=vowelBonusScore(response);
       console.log(`Score for ${response}: ${vbs}`)
     } else if (method==='2') {
-      let oldScr=oldScrabbleScorer (response);
+      let oldScr=scrabbleScore (response);
       console.log(`Score for ${response}: ${oldScr}`)
     }
 
